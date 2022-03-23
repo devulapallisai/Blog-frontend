@@ -20,6 +20,11 @@ function Navbar() {
             Articles
           </Link>
         </li>
+        <li className="inline-block py-4">
+          <Link to="/login" className="px-6 font-heading">
+            Login
+          </Link>
+        </li>
       </ul>
     </nav>
   );

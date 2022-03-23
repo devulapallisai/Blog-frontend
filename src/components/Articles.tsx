@@ -1,10 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-const Articles = ({ articles }) => {
+type MyType = {
+  name: string;
+  thumbnail: string;
+  title: string;
+  content: string[];
+};
+type Approps = {
+  articles: MyType[];
+};
+const Articles = (props: Approps) => {
   return (
     <>
-      {articles.map((article, index) => (
+      {props.articles.map((article: MyType, index: number) => (
         <div key={index} className="p-4 md:w-1/2">
           <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
             <Link to={`/article/${article.name}`}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import articles from "../components/Articl-content";
+import Notfound from "./404";
 function Article() {
   // const name = match.params.name;
   const name = useParams().name;
@@ -19,9 +20,7 @@ function Article() {
           ))}
         </>
       ) : (
-        <h1 className="text-center font-bold text-red-600 md:text-4xl sm:text-3xl text-xl">
-          Article doesn't exists now. Try Again later
-        </h1>
+        <Notfound />
       )}
     </div>
   );

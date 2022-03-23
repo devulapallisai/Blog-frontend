@@ -1,4 +1,12 @@
-const articles = [
+type MyType = {
+  name: string;
+  thumbnail: string;
+  title: string;
+  content: string[];
+}
+
+
+const articles:MyType[]= [
     {
       name: "learn-react",
       title: "The Fastest Way to Learn React",
