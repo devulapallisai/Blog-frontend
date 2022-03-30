@@ -1,11 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { userContext } from "../App";
 import Admin from "../images/Admin.svg";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const { user, handlelogin, logout } = useContext(userContext);
+  const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      window.location.href = "/admin";
+      navigate("/admin");
     }
   });
   return (

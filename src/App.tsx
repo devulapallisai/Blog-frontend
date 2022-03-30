@@ -34,9 +34,14 @@ function App() {
           ?.getIdToken(true)
           .then(function (idToken) {
             const { displayName, email, photoURL } = User;
-            if (email && email === "devulapallisaiprachodhan26@gmail.com") {
-              setuser(email);
-              // logout();
+            if (email) {
+              fetch("http://localhost:5000/admins").then((res) =>
+                res.json().then((re) => {
+                  if (re.includes(email)) {
+                    setuser(email);
+                  }
+                })
+              );
             }
           })
           .catch(function (error) {
@@ -48,7 +53,6 @@ function App() {
     });
   }, []);
   const handlelogin = () => {
-    console.log("clicked");
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -58,12 +62,16 @@ function App() {
         const user = result.user;
         // console.log(user);
         // setuser(user.displayName ? user.displayName : "");
-        if (user.email !== "devulapallisaiprachodhan26@gmail.com") {
-          logout();
-          return;
-        }
+        fetch("http://localhost:5000/admins").then((res) =>
+          res.json().then((re) => {
+            if (!re.includes(user.email)) {
+              logout();
+              return;
+            }
+          })
+        );
         // navigate("/admin");
-        window.location.href = "/admin";
+        // window.location.href = "/admin";
         // ...
       })
       .catch((error) => {
