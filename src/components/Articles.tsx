@@ -2,23 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 type MyType = {
   name: string;
-  thumbnail: string;
   title: string;
-  content: string[];
+  text: string;
+  image: string;
+  date: string;
+  tags: string[];
 };
 type Approps = {
   articles: MyType[];
 };
 const Articles = (props: Approps) => {
+  const colors = ["blue", "red", "green"];
+  const articles = props.articles.sort((a, b) => {
+    if (a.date < b.date) return 1;
+    return -1;
+  });
   return (
     <>
-      {props.articles.map((article: MyType, index: number) => (
+      {articles.map((article: MyType, index: number) => (
         <div key={index} className="p-4 md:w-1/2">
           <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
             <Link to={`/article/${article.name}`}>
               <img
                 className="lg:h-48 md:h-36 w-full object-cover object-center"
-                src={article.thumbnail}
+                src={article.image}
                 alt="blog"
               />
             </Link>
@@ -29,7 +36,7 @@ const Articles = (props: Approps) => {
                 </h3>
               </Link>
               <p className="leading-relaxed mb-3">
-                {article.content[0].substring(0, 115)}...
+                {article.text.substring(0, 115)}...
               </p>
               <div className="flex item-center flex-wrap">
                 <Link
@@ -39,6 +46,21 @@ const Articles = (props: Approps) => {
                   Learn more...
                 </Link>
               </div>
+              {article.tags.map((item, index) => (
+                <div
+                  className={`mt-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 mx-1 py-1 bg-${
+                    colors[index % 4]
+                  }-200 text-white 
+                rounded-full`}
+                  key={index}
+                  style={{ background: colors[index % 4] }}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="text-center mb-2">
+              Published on - {article.date}
             </div>
           </div>
         </div>

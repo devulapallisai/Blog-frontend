@@ -66,6 +66,7 @@ function App() {
           res.json().then((re) => {
             if (!re.includes(user.email)) {
               logout();
+              alert("Looks like you are not an admin :(");
               return;
             }
           })
