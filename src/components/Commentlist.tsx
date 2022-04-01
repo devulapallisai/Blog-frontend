@@ -1,7 +1,10 @@
 import React from "react";
 type Comment = {
-  username: String;
-  text: String;
+  name: string;
+  comments: {
+    username: string;
+    text: string;
+  };
 };
 type Propscomment = {
   comments: Comment[];
@@ -14,8 +17,8 @@ const CommentsList = (props: Propscomment) => {
       </h3>
       {props.comments.map((comment, index) => (
         <div key={index}>
-          <h4 className="text-xl font-bold">{comment.username}</h4>
-          <p className="mt-1 mb-4">{comment.text}</p>
+          <h4 className="text-xl font-bold">{comment.comments.username}</h4>
+          <p className="mt-1 mb-4">{comment.comments.text}</p>
         </div>
       ))}
     </>

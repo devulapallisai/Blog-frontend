@@ -27,7 +27,7 @@ const AddCommentForm = ({
   };
 
   return (
-    <form className="shadow rounded px-8 pt-6 pb-8 mb-4">
+    <div className="shadow rounded px-8 pt-6 pb-8 mb-4">
       <h3 className="text-xl font-bold mb-4 text-gray-900">Add a Comment</h3>
       <label className="block text-gray-700 text-sm font-bold mb-2">
         Name :
@@ -55,7 +55,7 @@ const AddCommentForm = ({
       >
         Add Comment
       </button>
-    </form>
+    </div>
   );
 };
 

@@ -15,15 +15,19 @@ type Mytype = {
   date: string;
   tags: string[];
 };
+type comment = {
+  name: string;
+  comments: {
+    username: string;
+    text: string;
+  };
+};
 function Article() {
   const colors = ["blue", "red", "green"];
   // const name = match.params.name;
+
   const [articles, setarticles] = useState<Mytype[]>([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/posts").then((res) =>
-      res.json().then((re) => setarticles(re.posts))
-    );
-  }, []);
+  const [comments, setcomments] = useState<comment[]>([]);
   const name = useParams().name;
   const article: Mytype | undefined = articles.find(
     (article) => article.name === name
@@ -42,15 +46,19 @@ function Article() {
     }
     return false;
   });
-  const comments = [
-    {
-      username: "Hello",
-      text: "Hello",
-    },
-  ];
   type article = {
     comments: String[];
   };
+  useEffect(() => {
+    fetch("http://localhost:5000/posts").then((res) =>
+      res.json().then((re) => setarticles(re.posts))
+    );
+  }, []);
+  useEffect(() => {
+    fetch(`http://localhost:5000/${article?.name}/comments`).then((res) =>
+      res.json().then((re) => setcomments(re.comments))
+    );
+  });
   const [articleinfo, setarticleinfo] = useState<article>({ comments: [] });
   return (
     <div className="mb-20">
@@ -71,7 +79,13 @@ function Article() {
               />
             )}
             <hr />
-            <CommentList comments={comments} />
+            {comments.length ? (
+              <CommentList comments={comments} />
+            ) : (
+              <h2 className="font-heading text-xl py-4 text-center font-semibold">
+                No comments until now..
+              </h2>
+            )}
             <hr />
             <h1 className="sm:text-4xl text-2xl font-bold my-6 text-gray-900">
               Related Articles
