@@ -12,7 +12,7 @@ function Navbar() {
         </li>
         <li className="inline-block py-4">
           <Link to="/about" className="px-6 font-heading">
-            About
+            Aboutx
           </Link>
         </li>
         <li className="inline-block py-4">

@@ -35,12 +35,13 @@ function App() {
           .then(function (idToken) {
             const { displayName, email, photoURL } = User;
             if (email) {
-              fetch("http://localhost:5000/admins").then((res) =>
-                res.json().then((re) => {
-                  if (re.includes(email)) {
-                    setuser(email);
-                  }
-                })
+              fetch("https://blogproject2022.herokuapp.com/admins").then(
+                (res) =>
+                  res.json().then((re) => {
+                    if (re.includes(email)) {
+                      setuser(email);
+                    }
+                  })
               );
             }
           })
@@ -62,7 +63,7 @@ function App() {
         const user = result.user;
         // console.log(user);
         // setuser(user.displayName ? user.displayName : "");
-        fetch("http://localhost:5000/admins").then((res) =>
+        fetch("https://blogproject2022.herokuapp.com/admins").then((res) =>
           res.json().then((re) => {
             if (!re.includes(user.email)) {
               logout();
