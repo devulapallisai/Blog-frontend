@@ -16,7 +16,7 @@ function Admin() {
     if (!user) {
       history("/login");
     } else {
-      fetch("http://localhost:5000/admins").then((res) =>
+      fetch("https://blogproject2022.herokuapp.com/admins").then((res) =>
         res.json().then((re) => {
           setadmins(re);
         })
@@ -37,7 +37,7 @@ function Admin() {
         img = fileReader.result;
         if (img) {
           // console.log("first");
-          fetch("http://localhost:5000/add-post", {
+          fetch("https://blogproject2022.herokuapp.com/add-post", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -66,7 +66,7 @@ function Admin() {
     }
   };
   const addadmin = () => {
-    fetch("http://localhost:5000/add-admin", {
+    fetch("https://blogproject2022.herokuapp.com/add-admin", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -84,7 +84,7 @@ function Admin() {
     });
   };
   const removeadmin = () => {
-    fetch("http://localhost:5000/delete-admin", {
+    fetch("https://blogproject2022.herokuapp.com/delete-admin", {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",

@@ -12,7 +12,7 @@ type Mytype = {
 function Articlelist() {
   const [articles, setarticles] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/posts").then((res) =>
+    fetch("https://blogproject2022.herokuapp.com/posts").then((res) =>
       res.json().then((re) => setarticles(re.posts))
     );
   }, []);

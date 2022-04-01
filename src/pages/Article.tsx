@@ -50,12 +50,12 @@ function Article() {
     comments: String[];
   };
   useEffect(() => {
-    fetch("http://localhost:5000/posts").then((res) =>
+    fetch("https://blogproject2022.herokuapp.com/posts").then((res) =>
       res.json().then((re) => setarticles(re.posts))
     );
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/${article?.name}/comments`).then((res) =>
+    fetch(`https://blogproject2022.herokuapp.com/${article?.name}/comments`).then((res) =>
       res.json().then((re) => setcomments(re.comments))
     );
   });

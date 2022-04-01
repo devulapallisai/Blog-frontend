@@ -13,13 +13,16 @@ const AddCommentForm = ({
   const [commentText, setCommentText] = useState("");
 
   const addComment = async () => {
-    const result = await fetch(`/api/articles/${articleName}/add-comments`, {
-      method: "post",
-      body: JSON.stringify({ username, text: commentText }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const result = await fetch(
+      `https://blogproject2022.herokuapp.com/api/articles/${articleName}/add-comments`,
+      {
+        method: "post",
+        body: JSON.stringify({ username, text: commentText }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const body = await result.json();
     setArticleInfo(body);
     setUsername("");
